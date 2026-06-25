@@ -1,4 +1,6 @@
-"""LeetCode #48 - Rotate Image."""
+"""LeetCode #48 - Rotate Image.
+Question Link: https://leetcode.com/problems/rotate-image/
+"""
 from typing import List
 
 
@@ -14,9 +16,19 @@ class BruteForce:
                 matrix[r][c] = rotated[r][c]
 
 
+# Complexity (BruteForce)
+#   Time:  O(n^2) — fill new matrix then copy back (n = side length).
+#   Space: O(n^2) — full rotated copy before writing in-place.
+
+
 class BetterSolution:
     def solve(self, matrix: List[List[int]]) -> None:
         OptimalSolution().solve(matrix)
+
+
+# Complexity (BetterSolution)
+#   Time:  O(n^2) — delegates to transpose + reverse.
+#   Space: O(1) — in-place rotation.
 
 
 class OptimalSolution:
@@ -26,4 +38,9 @@ class OptimalSolution:
         for r in range(n):
             for c in range(r + 1, n):
                 matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
+
+
+# Complexity (OptimalSolution)
+#   Time:  O(n^2) — reverse O(n) rows + transpose visits each cell once.
+#   Space: O(1) — 90° rotation via in-place row reverse + swap.
 

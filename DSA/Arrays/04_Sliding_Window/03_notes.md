@@ -1,25 +1,58 @@
 # Sliding Window Pattern Notes
 
-    ## Top Interview Questions
+## Top Interview Questions
 
-    - Maximum Average Subarray I (#643)
-- Minimum Size Subarray Sum (#209)
+- [Maximum Average Subarray I (#643)](https://leetcode.com/problems/maximum-average-subarray-i/)
+- [Minimum Size Subarray Sum (#209)](https://leetcode.com/problems/minimum-size-subarray-sum/)
 
-    ## Revision in 5 minutes
+## Visual summary
 
-    - Identify pattern clue in prompt.
-    - Write brute-force quickly.
-    - State bottleneck and optimize.
-    - Dry run one sample + one edge case.
-    - Mention time and space with reason.
+```mermaid
+graph TB
+    subgraph Fixed["Fixed window (size k)"]
+        F1["right: 0 → n-1"]
+        F2["left = right - k + 1"]
+        F3["Track max/min in window"]
+    end
+    subgraph Variable["Variable window"]
+        V1["right++ to expand"]
+        V2["while invalid: left++ to shrink"]
+        V3["Track best valid window"]
+    end
+```
 
-    ## Revision in 1 minute
+### Window movement diagram
 
-    - Clue -> Pattern -> Template -> Dry run -> Complexity
+```
+nums:  [ 2 | 3 | 1 | 2 | 4 | 3 ]
+         ↑-------↑
+        left   right     ← current window [2,3,1,2]
 
-    ## Most Important Concepts
+After right++:
+       [ 2 | 3 | 1 | 2 | 4 | 3 ]
+         ↑-----------↑
+        left       right     ← window sum grew
 
-    - Invariant: what remains true every iteration.
-    - Data structure choice: why this structure.
-    - Pointer/state updates: why safe and correct.
-    - Edge-case discipline.
+After left++ (shrink):
+       [ 2 | 3 | 1 | 2 | 4 | 3 ]
+             ↑-------↑
+            left   right     ← dropped leftmost element
+```
+
+## Revision in 5 minutes
+
+- Clue: contiguous subarray + sum/count constraint → sliding window.
+- Fixed k: slide both pointers together; variable: expand right, shrink left.
+- Maintain window state (sum, count map, etc.) incrementally.
+- Dry run: mark `left` and `right` at each step.
+- Complexity: O(n) — each index visited at most twice.
+
+## Revision in 1 minute
+
+- Expand right → while invalid shrink left → update best → O(n)
+
+## Most Important Concepts
+
+- **Invariant:** window `[left, right]` always represents a contiguous subarray.
+- **Fixed vs variable:** #643 uses fixed k; #209 uses variable until sum ≥ target.
+- **Why O(n):** `left` and `right` only move forward — never backward.

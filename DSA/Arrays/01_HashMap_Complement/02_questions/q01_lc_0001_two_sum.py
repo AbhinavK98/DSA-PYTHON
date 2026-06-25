@@ -1,6 +1,7 @@
 """
 Question: Two Sum
 LeetCode: #1
+Question Link: https://leetcode.com/problems/two-sum/
 Difficulty: Easy
 Pattern: HashMap Complement
 
@@ -27,6 +28,11 @@ class BruteForce:
         return []
 
 
+# Complexity (BruteForce)
+#   Time:  O(n^2) — outer loop fixes index i, inner loop checks every j > i.
+#   Space: O(1)   — only loop counters; no extra structure grows with n.
+
+
 class BetterSolution:
     """Sort copy + two pointers (keeps original indices separately)."""
 
@@ -46,6 +52,11 @@ class BetterSolution:
         return []
 
 
+# Complexity (BetterSolution)
+#   Time:  O(n log n) — sorting dominates; two-pointer scan is O(n).
+#   Space: O(n)       — indexed copy stores (value, index) pairs.
+
+
 class OptimalSolution:
     """One-pass hash map complement lookup."""
 
@@ -59,6 +70,11 @@ class OptimalSolution:
             seen[value] = index
 
         return []
+
+
+# Complexity (OptimalSolution)
+#   Time:  O(n) — single pass; each hash map lookup/insert is O(1) average.
+#   Space: O(n) — map stores up to n values seen so far.
 
 
 if __name__ == '__main__':

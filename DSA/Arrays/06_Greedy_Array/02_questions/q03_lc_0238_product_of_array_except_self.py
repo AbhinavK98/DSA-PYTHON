@@ -1,4 +1,6 @@
-"""LeetCode #238 - Product of Array Except Self."""
+"""LeetCode #238 - Product of Array Except Self.
+Question Link: https://leetcode.com/problems/product-of-array-except-self/
+"""
 from typing import List
 
 
@@ -14,6 +16,11 @@ class BruteForce:
         return answer
 
 
+# Complexity (BruteForce)
+#   Time:  O(n^2) — for each index i, multiply all other n-1 elements.
+#   Space: O(n)   — output array.
+
+
 class BetterSolution:
     def solve(self, nums: List[int]) -> List[int]:
         n = len(nums)
@@ -27,6 +34,11 @@ class BetterSolution:
             right[i] = right[i + 1] * nums[i + 1]
 
         return [left[i] * right[i] for i in range(n)]
+
+
+# Complexity (BetterSolution)
+#   Time:  O(n) — two prefix/suffix passes + O(n) combine.
+#   Space: O(n) — separate left[] and right[] arrays.
 
 
 class OptimalSolution:
@@ -46,3 +58,7 @@ class OptimalSolution:
 
         return answer
 
+
+# Complexity (OptimalSolution)
+#   Time:  O(n) — prefix pass left-to-right, suffix pass right-to-left.
+#   Space: O(1) extra — output array excluded; only prefix/suffix scalars.

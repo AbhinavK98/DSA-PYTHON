@@ -1,4 +1,6 @@
-"""LeetCode #724 - Find Pivot Index."""
+"""LeetCode #724 - Find Pivot Index.
+Question Link: https://leetcode.com/problems/find-pivot-index/
+"""
 from typing import List
 
 
@@ -8,6 +10,11 @@ class BruteForce:
             if sum(nums[:i]) == sum(nums[i + 1:]):
                 return i
         return -1
+
+
+# Complexity (BruteForce)
+#   Time:  O(n^2) — for each pivot i, rescan left and right halves.
+#   Space: O(1)   — only index and temporary slice sums.
 
 
 class BetterSolution:
@@ -24,6 +31,11 @@ class BetterSolution:
         return -1
 
 
+# Complexity (BetterSolution)
+#   Time:  O(n) build prefix + O(n) scan = O(n) total.
+#   Space: O(n) — prefix array of length n + 1.
+
+
 class OptimalSolution:
     def solve(self, nums: List[int]) -> int:
         total = sum(nums)
@@ -35,3 +47,7 @@ class OptimalSolution:
             left_sum += value
         return -1
 
+
+# Complexity (OptimalSolution)
+#   Time:  O(n) — one total sum + single pass updating left_sum.
+#   Space: O(1) — right_sum derived as total - left_sum - nums[i].

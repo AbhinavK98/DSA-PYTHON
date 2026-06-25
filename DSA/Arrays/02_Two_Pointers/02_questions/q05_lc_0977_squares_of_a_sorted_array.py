@@ -1,10 +1,17 @@
-"""LeetCode #977 - Squares of a Sorted Array."""
+"""LeetCode #977 - Squares of a Sorted Array.
+Question Link: https://leetcode.com/problems/squares-of-a-sorted-array/
+"""
 from typing import List
 
 
 class BruteForce:
     def solve(self, nums: List[int]) -> List[int]:
         return sorted(value * value for value in nums)
+
+
+# Complexity (BruteForce)
+#   Time:  O(n log n) — square each value then sort.
+#   Space: O(n)       — generator materialized by sorted().
 
 
 class BetterSolution:
@@ -26,6 +33,11 @@ class BetterSolution:
         return merged
 
 
+# Complexity (BetterSolution)
+#   Time:  O(n) — split, reverse negatives, merge like merge-sort.
+#   Space: O(n) — separate negative/non-negative squared lists + merged output.
+
+
 class OptimalSolution:
     def solve(self, nums: List[int]) -> List[int]:
         n = len(nums)
@@ -44,4 +56,9 @@ class OptimalSolution:
                 right -= 1
             write -= 1
         return answer
+
+
+# Complexity (OptimalSolution)
+#   Time:  O(n) — two pointers from ends; each index written once.
+#   Space: O(n) — output array (required by problem; no sorting needed).
 

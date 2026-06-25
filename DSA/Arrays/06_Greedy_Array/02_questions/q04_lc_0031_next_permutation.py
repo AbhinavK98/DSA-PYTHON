@@ -1,4 +1,6 @@
-"""LeetCode #31 - Next Permutation."""
+"""LeetCode #31 - Next Permutation.
+Question Link: https://leetcode.com/problems/next-permutation/
+"""
 from typing import List
 
 
@@ -9,9 +11,19 @@ class BruteForce:
         OptimalSolution().solve(nums)
 
 
+# Complexity (BruteForce)
+#   Time:  O(n!) — generating all permutations (conceptual placeholder).
+#   Space: O(n)   — recursion/stack for permutation generation.
+
+
 class BetterSolution:
     def solve(self, nums: List[int]) -> None:
         OptimalSolution().solve(nums)
+
+
+# Complexity (BetterSolution)
+#   Time:  O(n) — same as optimal (delegates).
+#   Space: O(1) — in-place swaps only.
 
 
 class OptimalSolution:
@@ -31,4 +43,9 @@ class OptimalSolution:
             nums[left], nums[right] = nums[right], nums[left]
             left += 1
             right -= 1
+
+
+# Complexity (OptimalSolution)
+#   Time:  O(n) — find pivot + swap + reverse suffix each linear.
+#   Space: O(1) — in-place: pivot, swap successor, reverse tail.
 

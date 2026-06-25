@@ -1,6 +1,7 @@
 """
 Question: Contains Duplicate
 LeetCode: #217
+Question Link: https://leetcode.com/problems/contains-duplicate/
 Difficulty: Easy
 Pattern: HashMap/HashSet lookup
 """
@@ -17,6 +18,11 @@ class BruteForce:
         return False
 
 
+# Complexity (BruteForce)
+#   Time:  O(n^2) — compares every pair (i, j) for equality.
+#   Space: O(1)   — no auxiliary storage beyond loop indices.
+
+
 class BetterSolution:
     def solve(self, nums: List[int]) -> bool:
         # Sorting makes equal values adjacent.
@@ -27,6 +33,11 @@ class BetterSolution:
         return False
 
 
+# Complexity (BetterSolution)
+#   Time:  O(n log n) — sorting costs O(n log n); one linear scan for neighbors.
+#   Space: O(n)       — sorted copy of the array.
+
+
 class OptimalSolution:
     def solve(self, nums: List[int]) -> bool:
         seen: Set[int] = set()
@@ -35,6 +46,11 @@ class OptimalSolution:
                 return True
             seen.add(value)
         return False
+
+
+# Complexity (OptimalSolution)
+#   Time:  O(n) — one pass; set membership check is O(1) average.
+#   Space: O(n) — set holds up to n distinct values in worst case.
 
 
 if __name__ == '__main__':

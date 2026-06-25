@@ -1,6 +1,7 @@
 """
 Question: Two Sum II - Input Array Is Sorted
 LeetCode: #167
+Question Link: https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 Difficulty: Medium
 Pattern: Two pointers on sorted array
 """
@@ -17,6 +18,11 @@ class BruteForce:
         return []
 
 
+# Complexity (BruteForce)
+#   Time:  O(n^2) — nested loops try every pair in the sorted array.
+#   Space: O(1)   — only index variables.
+
+
 class BetterSolution:
     def solve(self, numbers: List[int], target: int) -> List[int]:
         # Hash map also works, but uses extra space.
@@ -27,6 +33,11 @@ class BetterSolution:
                 return [seen[need] + 1, i + 1]
             seen[value] = i
         return []
+
+
+# Complexity (BetterSolution)
+#   Time:  O(n) — one pass with O(1) hash map lookups.
+#   Space: O(n) — map stores seen values (works but ignores sorted order).
 
 
 class OptimalSolution:
@@ -41,6 +52,11 @@ class OptimalSolution:
             else:
                 right -= 1
         return []
+
+
+# Complexity (OptimalSolution)
+#   Time:  O(n) — left and right move at most n steps total.
+#   Space: O(1) — exploits sorted input; no extra data structure.
 
 
 if __name__ == '__main__':

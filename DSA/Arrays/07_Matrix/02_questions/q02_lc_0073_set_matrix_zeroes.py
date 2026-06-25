@@ -1,4 +1,6 @@
-"""LeetCode #73 - Set Matrix Zeroes."""
+"""LeetCode #73 - Set Matrix Zeroes.
+Question Link: https://leetcode.com/problems/set-matrix-zeroes/
+"""
 from typing import List
 
 
@@ -21,9 +23,19 @@ class BruteForce:
                 matrix[r][c] = 0
 
 
+# Complexity (BruteForce)
+#   Time:  O(m * n) scan + O(m * n) zeroing marked rows/cols.
+#   Space: O(m + n) — sets storing which rows and columns to zero.
+
+
 class BetterSolution:
     def solve(self, matrix: List[List[int]]) -> None:
         BruteForce().solve(matrix)
+
+
+# Complexity (BetterSolution)
+#   Time:  O(m * n) — same as brute force (placeholder delegation).
+#   Space: O(m + n) — row/col marker sets.
 
 
 class OptimalSolution:
@@ -52,4 +64,9 @@ class OptimalSolution:
         if first_col_zero:
             for r in range(rows):
                 matrix[r][0] = 0
+
+
+# Complexity (OptimalSolution)
+#   Time:  O(m * n) — three passes: mark, apply, fix first row/col.
+#   Space: O(1) — first row and column reused as zero markers.
 
